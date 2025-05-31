@@ -8,6 +8,7 @@ import Home from "../pages/Home";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import MyApplications from "../pages/MyApplications";
+import AddJob from "../pages/AddJob";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
       {
         path:"my-applications",
         element:<PrivateRouter><MyApplications></MyApplications></PrivateRouter>
+      }
+      ,
+      {
+        path:"addJob",
+        element:<PrivateRouter><AddJob></AddJob></PrivateRouter>
       }
       ,
       {

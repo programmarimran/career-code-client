@@ -10,8 +10,17 @@ logOutUser()
     }
     const links=<>
     <li><NavLink to={"/"}>Home</NavLink></li>
+     {/* for Applicant links/ check role as well */}
     {
-      user&&<li><NavLink to={"/my-applications"}>My Applications</NavLink></li>
+      user&&<>
+      <li><NavLink to={"/my-applications"}>My Applications</NavLink></li>
+      </>
+    }
+    {/* for Recuiter links/ check role as well */}
+    {
+      user&&<>
+      <li><NavLink to={"/addJob"}>Add Job</NavLink></li>
+      </>
     }
     </>
     return (
