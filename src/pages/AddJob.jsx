@@ -1,8 +1,26 @@
 import React from "react";
+import AuthHook from "../hooks/AuthHook";
 
 const AddJob = () => {
+  const {user}=AuthHook()
+  const handleAddJob=(e)=>{
+e.preventDefault()
+const form=e.target;
+const formData=new FormData(form);
+const data=Object.fromEntries(formData.entries())
+const {currency,max,min,...newJob}=data;
+newJob.salaryRange={currency,max,min}
+newJob.requirements=newJob.requirements.split(",").map(req=>req.trim())
+newJob.responsibilites=newJob.responsibilites.split(",").map(req=>req.trim())
+
+
+console.log(newJob)
+// console.log(currency,max,min)
+// console.log(newJob)
+
+  }
   return (
-    <form className=" w-4xl mx-auto">
+    <form onSubmit={handleAddJob} className=" w-4xl mx-auto my-12">
       {/* Basic info */}
       <legend>Basic Info</legend>
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
@@ -111,7 +129,7 @@ const AddJob = () => {
 
         <label className="label">Currency</label>
         <select name="currency" defaultValue="Pick a color" className="select w-full">
-          <option disabled={true}>Pick a color</option>
+       
           <option>BDT</option>
           <option>EU</option>
           <option>USD</option>
@@ -153,6 +171,7 @@ const AddJob = () => {
           <label className="label">HR-Email</label>
           <input
             type="text"
+            value={user?.email}
             name="hr_email"
             className="input w-full"
             placeholder=" HR Email "
@@ -169,7 +188,7 @@ const AddJob = () => {
           />
         </div>
       </fieldset>
-      <input type="submit" className=" btn " value="Add Job" />
+      <input type="submit" className=" btn w-full" value="Add Job" />
     </form>
   );
 };
