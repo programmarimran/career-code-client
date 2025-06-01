@@ -15,6 +15,7 @@ const MyPostedJobList = ({ jobCreatedByPromise }) => {
               <th>Name</th>
               <th>Category</th>
               <th>Job type</th>
+              <th>count</th>
               <th>View applications</th>
             </tr>
           </thead>
@@ -26,6 +27,7 @@ const MyPostedJobList = ({ jobCreatedByPromise }) => {
                 <td>{job.title||"nope"}</td>
                 <td>{job.category|| "nope"}</td>
                 <td>{job.jobType|| "nope"}</td>
+                <td>{job.application_count}</td>
                  <td className=" btn"><Link to={`/applications/job/${job._id}`}>View Applications</Link></td>
                
               </tr>
