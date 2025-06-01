@@ -20,6 +20,7 @@ logOutUser()
     {
       user&&<>
       <li><NavLink to={"/addJob"}>Add Job</NavLink></li>
+      <li><NavLink to={"/myJob"}>My Jobs List</NavLink></li>
       </>
     }
     </>

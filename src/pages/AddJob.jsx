@@ -1,5 +1,7 @@
 import React from "react";
 import AuthHook from "../hooks/AuthHook";
+import { object } from "motion/react-client";
+import axios from "axios";
 
 const AddJob = () => {
   const {user}=AuthHook()
@@ -12,11 +14,23 @@ const {currency,max,min,...newJob}=data;
 newJob.salaryRange={currency,max,min}
 newJob.requirements=newJob.requirements.split(",").map(req=>req.trim())
 newJob.responsibilites=newJob.responsibilites.split(",").map(req=>req.trim())
-
-
+newJob.status="active"
+console.log(Object.keys(newJob).length)
 console.log(newJob)
+
 // console.log(currency,max,min)
 // console.log(newJob)
+//add to database this collectionj
+axios.post("http://localhost:3000/jobs",newJob)
+.then(data=>{
+  console.log(data.data)
+  if(data.data.insertedId){
+    alert("everything isOk")
+  }
+})
+.catch(error=>{
+  console.log(error)
+})
 
   }
   return (
@@ -75,19 +89,22 @@ console.log(newJob)
           <input
             className="btn w-full"
             type="radio"
-            name="frameworks"
+            name="jobType"
+            value={"On_Site"}
             aria-label="On-site"
           />
           <input
             className="btn w-full"
             type="radio"
-            name="frameworks"
+            name="jobType"
+            value={"Remote"}
             aria-label="Remote"
           />
           <input
             className="btn w-full"
             type="radio"
-            name="frameworks"
+            name="jobType"
+            value={"Hy_Brid"}
             aria-label="Hy-brid"
           />
         </div>
@@ -105,7 +122,7 @@ console.log(newJob)
       {/*Application deadline */}
       <legend className="label">Applicaton deadline</legend>
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
-        <input type="date" className="input w-full" />
+        <input name="applicationDeadline" type="date" className="input w-full" />
       </fieldset>
       {/* Salary Range */}
 
@@ -171,7 +188,7 @@ console.log(newJob)
           <label className="label">HR-Email</label>
           <input
             type="text"
-            value={user?.email}
+            defaultValue={user?.email}
             name="hr_email"
             className="input w-full"
             placeholder=" HR Email "
