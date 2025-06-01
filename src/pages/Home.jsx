@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div>
       <Hero></Hero>
-      <Suspense>
+      <Suspense fallback={<p>loading......</p>}>
         <HotJobs jobPromise={jobPromise}></HotJobs>
       </Suspense>
       <AutoForm></AutoForm>
