@@ -4,7 +4,9 @@ import HotJobs from "../components/HotJobs";
 import AutoForm from "../components/AutoForm";
 
 const Home = () => {
-  const jobPromise = fetch("http://localhost:3000/jobs").then((res) =>
+  const jobPromise = fetch("http://localhost:3000/jobs",{
+    credentials:"include"
+  }).then((res) =>
     res.json()
   );
 
